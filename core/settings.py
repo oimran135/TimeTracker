@@ -30,9 +30,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "drf_yasg",
     "rest_framework",
+    "rest_framework.authtoken",
     "rest_framework_simplejwt",
     "apps.authentication",
     "apps.project",
+    "apps.timelogging",
 ]
 
 MIDDLEWARE = [
