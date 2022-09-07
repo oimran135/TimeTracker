@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status
 from .utils import logout_user
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.views import APIView
 from .models import User
 from .serializers import (
@@ -15,6 +16,7 @@ class RegisterView(APIView):
     
     serializer_class = RegisterSerializer
 
+    @swagger_auto_schema(request_body=RegisterSerializer)
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -25,6 +27,7 @@ class RegisterView(APIView):
 
 class LoginView(APIView):
     
+    @swagger_auto_schema(request_body=LoginSerializer)
     def post(self, request):
         serializer = LoginSerializer(data = request.data)
         serializer.is_valid(raise_exception= True)
@@ -39,6 +42,7 @@ class UserView(APIView):
         serializer = UserSerializer(queryset)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    @swagger_auto_schema(request_body=UserSerializer)
     def patch(self, request):
         user_id = request.user.id
         queryset = User.objects.get(pk=user_id)
@@ -66,6 +70,7 @@ class UpdatePasswordView(APIView):
     def get_object(self):
         return self.request.user
 
+    @swagger_auto_schema(request_body=PasswordSerializer,)
     def put(self, request, *args, **kwargs):
         self.object = self.get_object()
         serializer = PasswordSerializer(data=request.data)

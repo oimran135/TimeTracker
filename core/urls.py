@@ -7,7 +7,7 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Project Manager API",
+      title="TIme Tracking API",
       default_version='v1',
       description="This api documentation is for the test assignment.",
       terms_of_service="https://www.google.com/policies/terms/",
@@ -24,5 +24,5 @@ urlpatterns = [
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path("auth/", include('apps.authentication.urls')),
-    #path("projects/management/", include('apps.projectManager.urls')),
+    #path("projects/", include('apps.project.urls')),
 ]

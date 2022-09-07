@@ -50,7 +50,7 @@ class UserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        exclude = ('password', 'tokens')
+        fields = ('email', 'username', 'name',)
 
 
 class PasswordSerializer(serializers.ModelSerializer):
@@ -59,3 +59,4 @@ class PasswordSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
+        fields = ('password', 'new_password',)
