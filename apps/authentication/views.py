@@ -2,6 +2,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .utils import logout_user
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework import permissions
 from rest_framework.views import APIView
 from .models import User
 from .serializers import (
@@ -15,6 +16,7 @@ from .serializers import (
 class RegisterView(APIView):
     
     serializer_class = RegisterSerializer
+    permission_classes = (permissions.AllowAny,)
 
     @swagger_auto_schema(request_body=RegisterSerializer)
     def post(self, request):
