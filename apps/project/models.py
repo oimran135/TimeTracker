@@ -21,8 +21,9 @@ class Project(models.Model):
     p_type = models.CharField(max_length=50, choices=p_type_choices, null=True, blank=True)
     desc = models.TextField(max_length=280, blank=True, null=True)
     p_status = models.CharField(max_length=50, choices=p_status_choices, null=True, blank=True)
-    start_date = models.DateField(blank=True, null=True)
-    end_date = models.DateField(auto_now_add=True)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(blank=True, null=True)
+    project_dashboard_key = models.CharField(max_length=150, null=False, blank=False, default="420-666")
 
 
 class UserRole(models.Model):
